@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         marginTop: 6,
         marginBottom: 150,
         textShadowColor: 'rgba(255, 255, 255, 0.57)',
-        textShadowOffset: { width: 0, height: 3 },
+        textShadowOffset: { width: 0, height: 1 },
         textShadowRadius: 10,
     },
     inputContainer: {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20,
         shadowColor: '#ffffff8f',
-        elevation: 9,
+        elevation: 4,
     },
     loginButtonText: {
         color: '#ffffff',
