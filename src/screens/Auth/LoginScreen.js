@@ -3,6 +3,7 @@ import { View, Text, Image, Dimensions, TextInput, TouchableOpacity, ActivityInd
 import { LinearGradient } from 'expo-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../../styles/AuthStyles';
+import { signIn } from '../../services/supabase';
 
 const LoginScreen = ({ navigation }) => {
   const { width } = Dimensions.get('window');
@@ -10,14 +11,20 @@ const LoginScreen = ({ navigation }) => {
 
   const [focusedInput, setFocusedInput] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [cpfInput, setCpfInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
 
-  const handleLogin = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      navigation.replace('Home');
-    }, 1200);
-  };
+  const handleLogin = async () => {
+  if (!cpfInput.trim() || !passwordInput) return;
+  setLoading(true);
+  const { user, error } = await signIn({ cpf: cpfInput, password: passwordInput });
+  setLoading(false);
+  if (error) {
+    alert(error.message || 'Erro ao entrar');
+    return;
+  }
+  navigation.replace('Home');
+};
 
   return (
     <LinearGradient
@@ -47,6 +54,8 @@ const LoginScreen = ({ navigation }) => {
               keyboardType="phone-pad"
               returnKeyType="next"
               selectionColor="#fff"
+              value={cpfInput}
+              onChangeText={setCpfInput}
             />
 
             <TextInput
@@ -58,6 +67,8 @@ const LoginScreen = ({ navigation }) => {
               onBlur={() => setFocusedInput(null)}
               returnKeyType="done"
               selectionColor="#fff"
+              value={passwordInput}
+              onChangeText={setPasswordInput}
             />
           </View>
 

@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../../styles/AuthStyles';
 import Image from 'react-native/Libraries/Image/Image';
+import { createUser } from '../../services/supabase';
 
 const RegisterScreen = ({ navigation }) => {
   const { width } = Dimensions.get('window');
@@ -17,14 +18,19 @@ const RegisterScreen = ({ navigation }) => {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleRegister = () => {
-    if (!name.trim() || !cpf.trim() || !phone.trim() || !password) return;
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      navigation.replace('Home');
-    }, 1400);
-  };
+  const handleRegister = async () => {
+  if (!name.trim() || !cpf.trim() || !phone.trim() || !password) return;
+  setLoading(true);
+  const { data, error } = await createUser({ name, cpf, phone, password });
+  setLoading(false);
+  if (error) {
+    alert(error.message || 'Erro ao cadastrar');
+    return;
+  }
+  alert('Cadastro realizado com sucesso!');
+  navigation.replace('Login');
+};
+
 
   return (
     <LinearGradient
@@ -41,7 +47,7 @@ const RegisterScreen = ({ navigation }) => {
       >
         <View style={styles.card}>
           <Image source={require('../../../assets/logo.png')} style={[styles.logo, { width: logoSize, height: logoSize }]} />
-          <Text style={styles.salonName}>Criar Conta</Text>
+          <Text style={styles.salonTextName}>Criar Conta</Text>
 
           <View style={styles.inputContainer}>
             <TextInput

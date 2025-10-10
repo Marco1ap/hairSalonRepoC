@@ -108,6 +108,20 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.72)',
     fontSize: 14,
   },
+
+  backButton: {
+    position: 'absolute',
+    left: 12,
+    top: 12,
+    padding: 8,
+    borderRadius: 8,
+    zIndex: 20,
+  },
+  backButtonText: {
+    color: 'rgba(255,255,255,0.85)',
+    fontSize: 16,
+    fontWeight: '600',
+  },
 });
 
 export default styles;
