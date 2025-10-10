@@ -1,1 +1,1 @@
-# hairSalonRepoC
+# Beauty Studio
