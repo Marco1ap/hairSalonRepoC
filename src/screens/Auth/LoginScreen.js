@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../../styles/AuthStyles';
 import { signIn } from '../../services/supabase';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({ navigation }) => {
   const { width } = Dimensions.get('window');
@@ -15,16 +16,25 @@ const LoginScreen = ({ navigation }) => {
   const [passwordInput, setPasswordInput] = useState('');
 
   const handleLogin = async () => {
-  if (!cpfInput.trim() || !passwordInput) return;
-  setLoading(true);
-  const { user, error } = await signIn({ cpf: cpfInput, password: passwordInput });
-  setLoading(false);
-  if (error) {
-    alert(error.message || 'Erro ao entrar');
-    return;
-  }
-  navigation.replace('Home');
-};
+    if (!cpfInput.trim() || !passwordInput) return;
+
+    setLoading(true);
+    const { user, error } = await signIn({ cpf: cpfInput, password: passwordInput });
+    setLoading(false);
+
+    if (error) {
+      alert(error.message || 'Erro ao entrar');
+      return;
+    }
+
+    try {
+      await AsyncStorage.setItem('user', JSON.stringify(user));
+    } catch (e) {
+      console.warn('Erro salvando sessão', e);
+    }
+
+    navigation.replace('Main');
+  };
 
   return (
     <LinearGradient

@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native';
 import { supabase } from '../../services/supabase';
-import styles from '../../styles/AppointmentsStyles';
+import styles from '../../styles/ServicesStyles';
 
-export default function AppointmentsScreen() {
+export default function ServiceScreen() {
   return (
     <View style={styles.container}>
-      <Text>Agendamentos gostosos</Text>
+      <Text>servicos</Text>
     </View>
   );
 }
