@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
-import { View, Text, Image, Dimensions, TextInput, TouchableOpacity, ActivityIndicator, Platform } from 'react-native';
+import React, { useState, useContext } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+  Platform,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../../styles/AuthStyles';
-import { signIn } from '../../services/supabase';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { signIn as svcSignIn } from '../../services/supabase';
+import AuthContext from '../../contexts/AuthContext';
 
-const LoginScreen = ({ navigation }) => {
+export default function LoginScreen({ navigation }) {
   const { width } = Dimensions.get('window');
   const logoSize = Math.min(width * 0.36, 140);
 
@@ -15,34 +24,26 @@ const LoginScreen = ({ navigation }) => {
   const [cpfInput, setCpfInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
+  const auth = useContext(AuthContext);
+
   const handleLogin = async () => {
     if (!cpfInput.trim() || !passwordInput) return;
-
     setLoading(true);
-    const { user, error } = await signIn({ cpf: cpfInput, password: passwordInput });
+    const { user, error } = await svcSignIn({ cpf: cpfInput, password: passwordInput });
     setLoading(false);
-
     if (error) {
       alert(error.message || 'Erro ao entrar');
       return;
     }
-
     try {
-      await AsyncStorage.setItem('user', JSON.stringify(user));
+      await auth.signIn(user);
     } catch (e) {
-      console.warn('Erro salvando sessão', e);
+      console.warn('Erro ao autenticar (context):', e);
     }
-
-    navigation.replace('Main');
   };
 
   return (
-    <LinearGradient
-      colors={['#0b0b0b', '#121212']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0.8, y: 1 }}
-      style={{ flex: 1 }}
-    >
+    <LinearGradient colors={['#0b0b0b', '#121212']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={{ flex: 1 }}>
       <KeyboardAwareScrollView
         contentContainerStyle={{ alignItems: 'center', justifyContent: 'center', flexGrow: 1, padding: 20 }}
         enableOnAndroid
@@ -67,7 +68,6 @@ const LoginScreen = ({ navigation }) => {
               value={cpfInput}
               onChangeText={setCpfInput}
             />
-
             <TextInput
               placeholder="Senha"
               placeholderTextColor="rgba(255,255,255,0.65)"
@@ -90,7 +90,6 @@ const LoginScreen = ({ navigation }) => {
             <TouchableOpacity onPress={() => navigation.navigate('Recover')}>
               <Text style={styles.linkText}>Recuperar senha</Text>
             </TouchableOpacity>
-
             <TouchableOpacity onPress={() => navigation.navigate('Register')}>
               <Text style={styles.linkText}>Cadastrar</Text>
             </TouchableOpacity>
@@ -99,6 +98,4 @@ const LoginScreen = ({ navigation }) => {
       </KeyboardAwareScrollView>
     </LinearGradient>
   );
-};
-
-export default LoginScreen;
+}

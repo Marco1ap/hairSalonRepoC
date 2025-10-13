@@ -1,10 +1,15 @@
 import { StyleSheet, Platform } from 'react-native';
 
+const ACCENT = '#2A7CFF';
+const CARD_BG = 'rgba(255,255,255,0.02)';
+const INPUT_BG = 'rgba(255,255,255,0.03)';
+const MUTED = 'rgba(255,255,255,0.7)';
+
 const styles = StyleSheet.create({
   card: {
     width: '100%',
     maxWidth: 520,
-    backgroundColor: 'rgba(255,255,255,0.02)',
+    backgroundColor: CARD_BG,
     borderRadius: 16,
     paddingVertical: 28,
     paddingHorizontal: 18,
@@ -28,15 +33,15 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 20,
     fontWeight: '700',
-    marginBottom: 18,
+    marginBottom: 12,
     textAlign: 'center',
     letterSpacing: 0.4,
   },
 
   loginText: {
-    color: '#ffffffff',
-    fontSize: 20,
-    marginBottom: 14,
+    color: '#FFFFFFFF',
+    fontSize: 18,
+    marginBottom: 10,
   },
 
   inputContainer: {
@@ -45,9 +50,9 @@ const styles = StyleSheet.create({
   },
 
   inputField: {
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    backgroundColor: INPUT_BG,
     color: '#FFFFFF',
-    paddingVertical: 14,
+    paddingVertical: Platform.OS === 'ios' ? 14 : 12,
     paddingHorizontal: 14,
     borderRadius: 10,
     marginBottom: 12,
@@ -57,7 +62,7 @@ const styles = StyleSheet.create({
   },
 
   inputFieldFocused: {
-    borderColor: 'rgba(255,255,255,0.28)',
+    borderColor: 'rgba(42,124,255,0.9)',
     backgroundColor: 'rgba(255,255,255,0.04)',
   },
 
@@ -67,15 +72,15 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: 'center',
     marginTop: 14,
-    backgroundColor: '#e9e9e9ff',
-    shadowColor: '#000',
+    backgroundColor: ACCENT,
+    shadowColor: '#0b2345',
     shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.22,
     shadowRadius: 12,
     elevation: 8,
   },
   primaryButtonText: {
-    color: '#0b0b0b',
+    color: '#fff',
     fontSize: 16,
     fontWeight: '700',
   },
@@ -121,6 +126,16 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.85)',
     fontSize: 16,
     fontWeight: '600',
+  },
+
+  smallMuted: {
+    color: MUTED,
+    fontSize: 13,
+  },
+
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

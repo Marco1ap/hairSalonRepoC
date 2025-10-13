@@ -19,17 +19,17 @@ const RegisterScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   const handleRegister = async () => {
-  if (!name.trim() || !cpf.trim() || !phone.trim() || !password) return;
-  setLoading(true);
-  const { data, error } = await createUser({ name, cpf, phone, password });
-  setLoading(false);
-  if (error) {
-    alert(error.message || 'Erro ao cadastrar');
-    return;
-  }
-  alert('Cadastro realizado com sucesso!');
-  navigation.replace('Login');
-};
+    if (!name.trim() || !cpf.trim() || !phone.trim() || !password) return;
+    setLoading(true);
+    const { data, error } = await createUser({ name, cpf, phone, password });
+    setLoading(false);
+    if (error) {
+      alert(error.message || 'Erro ao cadastrar');
+      return;
+    }
+    alert('Cadastro realizado com sucesso!');
+    navigation.replace('Login');
+  };
 
 
   return (

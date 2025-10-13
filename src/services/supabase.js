@@ -32,7 +32,7 @@ export async function createUser({ name, cpf, phone, password }) {
       name,
       cpf: cpfNorm,
       phone: phoneNorm,
-      password_hash: password, // pensando aqui em adicionar uma criptografia no futuro se nao der preguica
+      password_hash: password,
       user_type: 'client',
       photo_url: null,
     },
@@ -57,18 +57,18 @@ export async function getUserByCpf(identifier) {
 
 
 export async function signIn({ cpf, password }) {
-    try {
-        const user = await getUserByCpf(cpf);
-        if (!user) {
-            return { user: null, error: { message: 'Usuário não encontrado' } };
-        }
-
-        if (user.password_hash !== password) {
-            return { user: null, error: { message: 'Senha inválida' } };
-        }
-
-        return { user, error: null };
-    } catch (err) {
-        return { user: null, error: err };
+  try {
+    const user = await getUserByCpf(cpf);
+    if (!user) {
+      return { user: null, error: { message: 'Usuário não encontrado' } };
     }
+
+    if (user.password_hash !== password) {
+      return { user: null, error: { message: 'Senha inválida' } };
+    }
+
+    return { user, error: null };
+  } catch (err) {
+    return { user: null, error: err };
+  }
 }

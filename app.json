@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "hairSalonC",
-    "slug": "hairSalonC",
+    "name": "BeautyStudio",
+    "slug": "beautystudio",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0b0b0b"
     },
     "ios": {
       "supportsTablet": true

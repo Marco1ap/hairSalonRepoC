@@ -1,110 +1,166 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  screen: { flex: 1 },
+  screen: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    padding: 18,
-    paddingTop: 36,
+    paddingHorizontal: 16,
   },
-
-  headerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 },
-  headerLeft: { flexDirection: 'row', alignItems: 'center', flex: 1 },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 2,
+    paddingBottom: 6,
+    paddingTop: 6,
+  },
+  headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
   avatarWrap: {
-    width: 72,
-    height: 72,
-    borderRadius: 999,
+    width: 68,
+    height: 68,
+    borderRadius: 34,
     overflow: 'hidden',
     marginRight: 12,
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.03)',
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  avatar: { width: 72, height: 72, borderRadius: 999, resizeMode: 'cover' },
-  headerText: { flex: 1 },
-  greeting: { color: '#fff', fontSize: 20, fontWeight: '700' },
-  subGreeting: { color: 'rgba(255,255,255,0.7)', marginTop: 4 },
-
+  avatar: {
+    width: 68,
+    height: 68,
+    borderRadius: 34,
+  },
+  headerText: {
+    flex: 1,
+  },
+  greeting: {
+    color: '#fff',
+    fontWeight: '800',
+    fontSize: 16,
+  },
+  subGreeting: {
+    color: 'rgba(255,255,255,0.7)',
+    marginTop: 4,
+    fontSize: 12,
+  },
   logoutTopRight: {
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 8,
+    marginLeft: 8,
+    padding: 6,
   },
   logoutTopRightText: {
     color: '#fff',
     fontWeight: '700',
   },
 
-  quickRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 16 },
-  quickAction: {
-    backgroundColor: 'rgba(255,255,255,0.03)',
-    padding: 12,
-    borderRadius: 12,
-    alignItems: 'flex-start',
-  },
-  quickTitle: { color: '#fff', fontWeight: '700', fontSize: 15 },
-  quickSubtitle: { color: 'rgba(255,255,255,0.7)', marginTop: 6, fontSize: 12 },
-
-  adminCard: {
-    backgroundColor: 'rgba(255,255,255,0.03)',
-    padding: 12,
-    borderRadius: 12,
+  quickRow: {
+    flexDirection: 'row',
+    marginTop: 8,
     marginBottom: 12,
   },
-  adminTitle: { color: '#fff', fontWeight: '700', marginBottom: 8 },
-  adminRow: { flexDirection: 'row', justifyContent: 'space-between' },
-  adminAction: {
-    backgroundColor: '#e9e9e9ff',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 10,
-    marginRight: 8,
+  quickAction: {
+    backgroundColor: 'rgba(255,255,255,0.02)',
+    padding: 14,
+    borderRadius: 12,
   },
-  adminActionText: { color: '#0b0b0b', fontWeight: '700' },
+  quickTitle: {
+    color: '#fff',
+    fontWeight: '800',
+    fontSize: 14,
+  },
+  quickSubtitle: {
+    color: 'rgba(255,255,255,0.7)',
+    marginTop: 4,
+    fontSize: 12,
+  },
 
-  statsRow: { flexDirection: 'row', justifyContent: 'flex-start', marginTop: 8 },
+  adminBadgeWrap: {
+    marginVertical: 10,
+    alignSelf: 'flex-start',
+    backgroundColor: 'rgba(42,124,255,0.08)',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 10,
+  },
+  adminBadgeText: {
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: 12,
+  },
+
+  statsRow: {
+    marginTop: 8,
+    marginBottom: 12,
+  },
   statCard: {
+    backgroundColor: 'rgba(255,255,255,0.02)',
     padding: 12,
     borderRadius: 12,
-    backgroundColor: 'rgba(255,255,255,0.03)',
-    alignItems: 'center',
   },
-  statNumber: { color: '#fff', fontSize: 20, fontWeight: '800' },
-  statLabel: { color: 'rgba(255,255,255,0.75)', marginTop: 6, fontSize: 12 },
+  statNumber: {
+    color: '#fff',
+    fontWeight: '800',
+    fontSize: 20,
+  },
+  statLabel: {
+    color: 'rgba(255,255,255,0.75)',
+    marginTop: 4,
+    fontSize: 12,
+  },
 
-  section: { marginTop: 12 },
-  sectionHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 },
-  sectionTitle: { color: '#fff', fontWeight: '700', fontSize: 16 },
-  viewAll: { color: 'rgba(255,255,255,0.7)', fontSize: 13 },
+  section: {
+    marginTop: 8,
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    color: '#fff',
+    fontWeight: '800',
+    fontSize: 16,
+    marginBottom: 8,
+  },
 
   appCard: {
     flexDirection: 'row',
-    padding: 12,
-    borderRadius: 10,
     backgroundColor: 'rgba(255,255,255,0.02)',
+    padding: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  appTitle: {
+    color: '#fff',
+    fontWeight: '800',
+  },
+  appText: {
+    color: 'rgba(255,255,255,0.75)',
+    fontSize: 12,
+    marginTop: 4,
+  },
+  appDate: {
+    color: '#fff',
+    fontWeight: '700',
+  },
+  appStatus: {
+    color: 'rgba(255,255,255,0.8)',
+    marginTop: 6,
+  },
+
+  emptyRow: {
+    padding: 18,
     alignItems: 'center',
   },
-  appTitle: { color: '#fff', fontWeight: '700', marginBottom: 4 },
-  appText: { color: 'rgba(255,255,255,0.75)', fontSize: 12 },
-  appDate: { color: 'rgba(255,255,255,0.85)', fontSize: 12, textAlign: 'right' },
-  appStatus: { marginTop: 6, color: 'rgba(255,255,255,0.8)', fontWeight: '600' },
-
-  emptyRow: { padding: 12, alignItems: 'center' },
-  emptyText: { color: 'rgba(255,255,255,0.7)', marginBottom: 8 },
-
-  servicesRow: { flexDirection: 'row', justifyContent: 'flex-start', flexWrap: 'wrap' },
-  serviceCard: {
-    width: '48%',
-    margin: '1%',
-    padding: 10,
-    borderRadius: 10,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+  emptyText: {
+    color: 'rgba(255,255,255,0.7)',
   },
-  serviceImg: { width: '100%', height: 90, borderRadius: 8, marginBottom: 8 },
-  serviceImgPlaceholder: { width: '100%', height: 90, borderRadius: 8, marginBottom: 8, backgroundColor: '#222' },
-  serviceName: { color: '#fff', fontWeight: '700' },
-  servicePrice: { color: 'rgba(255,255,255,0.85)', marginTop: 6, fontWeight: '700' },
 
-  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
