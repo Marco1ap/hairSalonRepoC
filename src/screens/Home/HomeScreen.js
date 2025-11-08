@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useContext } from 'react';
-import { View, Text, Image, TouchableOpacity, FlatList, ActivityIndicator, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity, FlatList, ActivityIndicator, Alert, SafeAreaView, StatusBar, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { supabase } from '../../services/supabase';
@@ -173,9 +173,12 @@ export default function HomeScreen() {
     </View>
   );
 
+  // calculo de padding para topo (considera statusbar no Android)
+  const extraTopPadding = Platform.OS === 'android' ? (StatusBar.currentHeight || 24) + 8 : 0;
+
   return (
     <LinearGradient colors={['#0b0b0b', '#121212']} style={styles.screen}>
-      <View style={styles.container}>
+      <SafeAreaView style={[styles.container, { paddingTop: extraTopPadding }]}>
         <Header />
         <View style={styles.quickRow}>
           <View style={{ flex: 1, marginRight: 6 }}>
@@ -212,7 +215,7 @@ export default function HomeScreen() {
             />
           )}
         </View>
-      </View>
+      </SafeAreaView>
     </LinearGradient>
   );
 }
